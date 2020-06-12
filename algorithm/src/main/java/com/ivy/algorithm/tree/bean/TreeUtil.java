@@ -56,4 +56,37 @@ public class TreeUtil {
             }
         }
     }
+
+    public static Node createNode(Integer[] arr) {
+        if (arr == null || arr.length == 0) {
+            return null;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        Node treeNode = new Node(arr[0]);
+        queue.add(treeNode);
+        int i = 1;
+        int size = arr.length-1;
+        while (!queue.isEmpty()){
+            Node node = queue.remove();
+            if (i > size) {
+                break;
+            }
+            if (arr[i] != null) {
+                Node left = new Node(arr[i]);
+                node.left = left;
+                queue.add(left);
+            }
+            i++;
+            if (i > size) {
+                break;
+            }
+            if (arr[i] != null) {
+                Node right = new Node(arr[i]);
+                node.right = right;
+                queue.add(right);
+            }
+            i++;
+        }
+        return treeNode;
+    }
 }
